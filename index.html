@@ -580,10 +580,7 @@ return true;};}</script>
 
 
 		<hr>
-
-
-		<!-- Results (hide the div, only show when we have results) -->
-		<div id="divResults" style="display: none;">
+<div id="divResults" style="display: inherit;">
 
 			<h2>Display Units</h2>
 
@@ -593,21 +590,21 @@ return true;};}</script>
 						Display results in:
 					</p>
 				</div>
-				<div class="col-table col-table-resp" id="unitRdo-custom">
+				<div class="col-table col-table-resp" id="unitRdo-custom" style="">
 					<label class="radio form-full-pad">
 						<span tooltip-position="bottom" tooltip="Custom units (edit within your Preferences page)">
 							<input type="radio" name="unitRadio" id="unitRadioCustom" value="1">Custom (<a href="/auth/preferences">Edit</a>)
 						</span>
 					</label>
 				</div>
-				<div class="col-table col-table-resp" id="unitRdo-english">
+				<div class="col-table col-table-resp" id="unitRdo-english" style="">
 					<label class="radio form-full-pad">
 						<span tooltip-position="bottom" tooltip="US Customary units">
 							<input type="radio" name="unitRadio" id="unitRadioEnglish" value="2">US
 						</span>
 					</label>
 				</div>
-				<div class="col-table col-table-resp" id="unitRdo-SI">
+				<div class="col-table col-table-resp" id="unitRdo-SI" style="">
 					<label class="radio form-full-pad">
 						<span tooltip-position="bottom" tooltip="Metric (SI) units">
 							<input type="radio" name="unitRadio" id="unitRadioSI" value="3">SI
@@ -620,7 +617,7 @@ return true;};}</script>
 
 			<hr>
 			<h2>Results</h2>
-			<p>The short duration torque details are as below.</p>
+			<p>The results of the short duration torque are detailed below.  Refer to the <a href=" ">Short Duration Torque Reference</a> section for details on how these results were derived.</p>
 
 			<div class="card">
 				<div class="card-content">
@@ -628,7 +625,7 @@ return true;};}</script>
 					<div id="tabGroupResults">
 
 						<div class="tab-list" role="tablist">
-							<a href="#summaryTab" class="tab-item active" role="tab">Results Summary</a>
+							<a href="#summaryTab" class="tab-item active" role="tab" style="">Results Summary</a>
 
 						</div>
 
@@ -639,7 +636,7 @@ return true;};}</script>
 <h3>Results Summary</h3>
 
 <p>
-	Summary tables of results are shown below. These tables give the <a href="/reference/strength-of-materials#allowable-stress-design">factors of safety</a> for the lugs and pin, as applicable.  Any factors of safety of at least 1 are shown in green, and below 1 are shown in red. It is up to the discretion of the engineer to determine the appropriate factor of safety to use in design.
+	Summary tables of results are shown below. These tables give the <a href="/reference/strength-of-materials#allowable-stress-design">Short Duration Torque</a> for the Propeller shaft, which is acting.  However we need to consider the wheel slip torque as well to derive required series of the propeller shaft.
 </p>
 
 
@@ -648,110 +645,36 @@ return true;};}</script>
 
 		<h5>Short Duration Torque</h5>
 
-		<p id="resSum_maleDesc"></p>
+		<p id="resSum_maleDesc">This is the results of the Short Duration Torque, which is due to the Engine and Transmission box in the vehicle:</p>
 
 		<table class="tbl-border-all tbl-text-align-center tbl-text-align-left-col-1">
 			<tbody><tr>
 				<td>Total Engine Torque</td>
 				<td><span class="math-font">T<sub>eng</sub></span></td>
-				<td> <span id="resSum_male_force"></span> </td>
+				<td> <span id="resSum_male_force">251,344&nbsp;lbf</span> </td>
 			</tr>
 			<tr>
-				<td>Lug Strength for Oblique Loading</td>
-				<td><span class="math-font">P<sub>ult</sub></span></td>
-				<td> <span id="resSum_male_P_ult"></span> </td>
+				<td>Low gear ratio of the transmission box</td>
+				<td><span class="math-font">G<sub>low</sub></span></td>
+				<td> <span id="resSum_male_P_ult">25,311&nbsp;lbf</span> </td>
 			</tr>
 			<tr>
-				<td>Factor of Safety</td>
-				<td><span class="math-font">FS</span></td>
-				<td id="resSum_male_FS_cell" style="text-align:center">
-					<span id="resSum_male_FS_span"></span>
+				<td>Short Duration Torque</td>
+				<td><span class="math-font">T</span></td>
+				<td id="resSum_male_FS_cell" style="text-align: center; background-color: salmon;">
+					<span id="resSum_male_FS_span">0.10</span>
 				</td>
 			</tr>
 
 		</tbody></table>
 
 
-		<div id="divSumTbl_FemaleLug_Results" style="display:none;">
-
-			<h5 class="pad-top-0p38">Female Lug</h5>
-			<p>
-				These are the strength results of the female lug, independent of the rest of the joint:
-			</p>
-			<table class="tbl-border-all tbl-text-align-center tbl-text-align-left-col-1">
-				<tbody><tr>
-					<td>Total Applied Force</td>
-					<td><span class="math-font">P<sub>app</sub></span></td>
-					<td> <span id="resSum_fem_force"></span> </td>
-				</tr>
-				<tr>
-					<td>Lug Strength for Oblique Loading</td>
-					<td><span class="math-font">P<sub>ult</sub></span></td>
-					<td> <span id="resSum_fem_P_ult"></span> </td>
-				</tr>
-				<tr>
-					<td>Factor of Safety</td>
-					<td><span class="math-font">FS</span></td>
-					<td id="resSum_fem_FS_cell" style="text-align:center">
-						<span id="resSum_fem_FS_span"></span>
-					</td>
-				</tr>
-			</tbody></table>
-
-
-			<h5 class="pad-top-0p38">Double Shear Joint Strength</h5>
-
-			<p>
-				This is the overall strength of the joint, accounting for the male lug, the two female lugs, and the pin.  The bearing areas between the pin and the lugs are shown in the figure to the right.
-			</p>
-
-			<table class="tbl-border-all tbl-text-align-center tbl-text-align-left-col-1">
-				<tbody><tr>
-					<td>Total Applied Force</td>
-					<td><span class="math-font">P<sub>app</sub></span></td>
-					<td> <span id="resSum_dblShr_force"></span> </td>
-				</tr>
-				<tr>
-					<td>Overall Ultimate Load (Joint Strength)</td>
-					<td><span class="math-font">P<sub>ult</sub></span></td>
-					<td> <span id="resSum_dblShr_P_ult"></span> </td>
-				</tr>
-				<tr>
-					<td>Factor of Safety</td>
-					<td><span class="math-font">FS</span></td>
-					<td id="resSum_dblShr_FS_cell" style="text-align:center">
-						<span id="resSum_dblShr_FS_span"></span>
-					</td>
-				</tr>
-
-			</tbody></table>
-
-		</div>
-
-
-		<div id="divSumTbl_FemaleLug_NoResults" style="display:none;">
-
-			<h5 class="pad-top-0p38">Female Lug</h5>
-
-			<p>
-				There is no female lug in this joint, so these results cannot be calculated.
-			</p>
-
-
-			<h5 class="pad-top-0p38">Double Shear Joint Strength</h5>
-
-			<p>
-				There is no female lug in this joint, so these results cannot be calculated.
-			</p>
-
-		</div>
-
 	</div>
 
 	<div class="col-md-5">
 		<br>
-		<div id="canvasSummary" class="card">
-			<canvas height="100" width="100">Your browser is out of date.</canvas>
+		<div id="canvasSummary" class="card" style="height:280px;">
+			<canvas height="280" width="353">Your browser is out of date.</canvas>
 		</div>
 	</div>
 </div>
@@ -760,7 +683,7 @@ return true;};}</script>
 
 <br><hr>
 <p style="color:red;">
-	<i>See full result details on the other tabs.</i>
+	<i> </i>
 </p>
 
 
@@ -796,7 +719,7 @@ return true;};}</script>
 		<th>Compressive<br>Ultimate Strength,<br>S<sub>cu</sub></th>
 	</tr>
 	<!-- *** other rows added dynamically *** -->
-</tbody></table>
+<tr><td class="headCol">Example Material 1, Fictitious</td><td>12.00E6&nbsp;psi</td><td>10.00%</td><td>0.103</td><td>20,000&nbsp;psi</td><td>40,000&nbsp;psi</td><td>11,540&nbsp;psi</td><td>23,080&nbsp;psi</td><td>20,000&nbsp;psi</td><td>40,000&nbsp;psi</td></tr></tbody></table>
 
 <p>
 	<i>NOTE:</i>&nbsp; For ductile materials, compressive strength is approximately equal to tensile strength.  For brittle materials, compressive strength is higher than tensile strength.  In this analysis it is conservatively assumed that compressive strength is equal to tensile strength.
@@ -820,25 +743,25 @@ return true;};}</script>
 			<tbody><tr>
 				<td><span class="math-font">P<sub>ax</sub></span></td>
 				<td>=</td>
-				<td> <span id="axialForce"></span> </td>
+				<td> <span id="axialForce">224,809&nbsp;lbf</span> </td>
 				<td class="pad-left-2">axial force</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">P<sub>tr</sub></span></td>
 				<td>=</td>
-				<td> <span id="transForce"></span> </td>
+				<td> <span id="transForce">112,404&nbsp;lbf</span> </td>
 				<td class="pad-left-2">transverse force</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">P<sub>app</sub></span></td>
 				<td>=</td>
-				<td> <span id="cmbForce"></span> </td>
+				<td> <span id="cmbForce">251,344&nbsp;lbf</span> </td>
 				<td class="pad-left-2">total applied force</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">α</span></td>
 				<td>=</td>
-				<td> <span id="angleForce"></span> </td>
+				<td> <span id="angleForce">26.6 deg</span> </td>
 				<td class="pad-left-2">angle</td>
 			</tr>
 		</tbody></table>
@@ -859,7 +782,7 @@ return true;};}</script>
 				<tbody><tr>
 					<td><span class="math-font">g</span></td>
 					<td>=</td>
-					<td> <span id="gap"></span> </td>
+					<td> <span id="gap">undefined</span> </td>
 					<td class="pad-left-2"><a href="/reference/lug-analysis#air-force-pin-strengths">gap between lugs (for bending arm)</a></td>
 				</tr>
 			</tbody></table>
@@ -881,25 +804,25 @@ return true;};}</script>
 			<tbody><tr>
 				<td><span class="math-font">D<sub>P</sub></span></td>
 				<td>=</td>
-				<td> <span id="pinDia"></span> </td>
+				<td> <span id="pinDia">1.500&nbsp;in</span> </td>
 				<td class="pad-left-2">diameter</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">A</span></td>
 				<td>=</td>
-				<td> <span id="pinArea"></span> </td>
+				<td> <span id="pinArea">1.767&nbsp;in<sup>2</sup></span> </td>
 				<td class="pad-left-2">area</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">S</span></td>
 				<td>=</td>
-				<td> <span id="pinSectMod"></span> </td>
+				<td> <span id="pinSectMod">0.3313&nbsp;in<sup>3</sup></span> </td>
 				<td class="pad-left-2"><a href="/reference/cross-sections#section-modulus">section modulus</a></td>
 			</tr>
 			<tr>
 				<td><span class="math-font">k<sub>b.P</sub></span></td>
 				<td>=</td>
-				<td> <span id="pin_k_bp"></span> </td>
+				<td> <span id="pin_k_bp">1.56</span> </td>
 				<td class="pad-left-2"><a href="/reference/lug-analysis#air-force-pin-strengths">plastic bending coefficient</a></td>
 			</tr>
 		</tbody></table>
@@ -953,11 +876,11 @@ return true;};}</script>
 		<table class="tbl-border-none tbl-pad-vert-none tbl-pad-horiz-ss">
 			<tbody><tr>
 				<td>Material:</td>
-				<td class="pad-left-2"> <span id="maleMatName"></span> </td>
+				<td class="pad-left-2"> <span id="maleMatName">Example Material 1, Fictitious</span> </td>
 			</tr>
 			<tr>
 				<td>Bushing Material:</td>
-				<td class="pad-left-2"> <span id="maleBushMatName"></span> </td>
+				<td class="pad-left-2"> <span id="maleBushMatName">---</span> </td>
 			</tr>
 		</tbody></table>
 
@@ -965,37 +888,37 @@ return true;};}</script>
 			<tbody><tr>
 				<td><span class="math-font">w</span></td>
 				<td>=</td>
-				<td> <span id="maleWidth"></span> </td>
+				<td> <span id="maleWidth">3.000&nbsp;in</span> </td>
 				<td style="padding-left:30px;">width</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">t<sub>2</sub></span></td>
 				<td>=</td>
-				<td> <span id="maleThk"></span> </td>
+				<td> <span id="maleThk">1.000&nbsp;in</span> </td>
 				<td style="padding-left:30px;">thickness</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">D</span></td>
 				<td>=</td>
-				<td> <span id="maleHoleDia"></span> </td>
+				<td> <span id="maleHoleDia">1.625&nbsp;in</span> </td>
 				<td style="padding-left:30px;">hole diameter</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">e</span></td>
 				<td>=</td>
-				<td> <span id="maleEdgeDist"></span> </td>
+				<td> <span id="maleEdgeDist">1.500&nbsp;in</span> </td>
 				<td style="padding-left:30px;">edge distance (hole center to edge of lug)</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">a</span></td>
 				<td>=</td>
-				<td> <span id="maleADist"></span> </td>
+				<td> <span id="maleADist">0.6875&nbsp;in</span> </td>
 				<td style="padding-left:30px;">distance (edge of hole to edge of lug)</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">h<sub>eff</sub></span></td>
 				<td>=</td>
-				<td> <span id="maleHeff"></span> </td>
+				<td> <span id="maleHeff">0.8297&nbsp;in</span> </td>
 				<td style="padding-left:30px;"><a href="/reference/lug-analysis#air-force-transverse-lug">effective edge distance</a></td>
 			</tr>
 		</tbody></table>
@@ -1098,17 +1021,17 @@ return true;};}</script>
 	<tbody><tr>
 		<td>Lug Strength for Pure Axial Loading</td>
 		<td><span class="math-font">P<sub>u.L.B</sub></span></td>
-		<td> <span class="axial_P_u_LB"></span> </td>
+		<td> <span class="axial_P_u_LB">27,355&nbsp;lbf</span> </td>
 	</tr>
 	<tr>
 		<td>Lug Strength for Pure Transverse Loading</td>
 		<td><span class="math-font">P<sub>tru.L.B</sub></span></td>
-		<td> <span class="trans_P_tru_LB"></span> </td>
+		<td> <span class="trans_P_tru_LB">26,193&nbsp;lbf</span> </td>
 	</tr>
 	<tr>
 		<td>Lug Strength for Oblique Loading</td>
 		<td><span class="math-font">P<sub>ult</sub></span></td>
-		<td> <span class="oblique_P_ult"></span> </td>
+		<td> <span class="oblique_P_ult">25,311&nbsp;lbf</span> </td>
 	</tr>
 	<tr class="row-border-none">
 		<td class="pad-top-0p75"></td>
@@ -1116,13 +1039,13 @@ return true;};}</script>
 	<tr>
 		<td>Total Applied Force</td>
 		<td><span class="math-font">P<sub>app</sub></span></td>
-		<td> <span class="force_cmb"></span> </td>
+		<td> <span class="force_cmb">251,344&nbsp;lbf</span> </td>
 	</tr>
 	<tr>
 		<td>Factor of Safety</td>
 		<td><span class="math-font">FS</span></td>
-		<td class="FS_cell text-center">
-			<span class="FS_span"></span>
+		<td class="FS_cell text-center" style="background-color: salmon;">
+			<span class="FS_span">0.10</span>
 		</td>
 	</tr>
 </tbody></table>
@@ -1150,15 +1073,15 @@ return true;};}</script>
 
 <p>
 	The <a href="/reference/lug-analysis#air-force-bearing-strength-axial">axial load coefficient</a> is determined from the figure below.  This coefficient is only valid for <span class="math-font">D/t ≤ 5</span>, which
-	<span class="Kaxial_msg1"></span>
+	<span class="Kaxial_msg1">applies</span>
 	in this case.  From the plot, the coefficient is:
 </p>
 
 <table class="tbl-border-none tbl-center tbl-vert-align-middle tbl-pad-vert-md tbl-pad-horiz-ss margin-bot-1p25">
 	<tbody><tr>
 		<td><span class="math-font">K<sub>axial</sub> =</span></td>
-		<td style="padding-right:50px;"> <span class="K_axial"></span> </td>
-		<td>(<span class="Kaxial_msg2"></span>)</td>
+		<td style="padding-right:50px;"> <span class="K_axial">1.66</span> </td>
+		<td>(<span class="Kaxial_msg2" style="color:green">applies since D/t &lt;= 5</span>)</td>
 	</tr>
 </tbody></table>
 
@@ -1180,12 +1103,12 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">D/t</span></td>
 						<td>=</td>
-						<td> <span class="D_over_t"></span> </td>
+						<td> <span class="D_over_t">1.63</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">e/D</span></td>
 						<td>=</td>
-						<td> <span class="e_over_D"></span> </td>
+						<td> <span class="e_over_D">0.92</span> </td>
 					</tr>
 					<tr>
 						<td style="padding-top:8px;"></td>
@@ -1193,17 +1116,17 @@ return true;};}</script>
 					<tr>
 						<td><span class="math-font">D</span></td>
 						<td>=</td>
-						<td> <span class="geo_D"></span> </td>
+						<td> <span class="geo_D">1.625&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">e</span></td>
 						<td>=</td>
-						<td> <span class="geo_e"></span> </td>
+						<td> <span class="geo_e">1.500&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">t</span></td>
 						<td>=</td>
-						<td> <span class="geo_t"></span> </td>
+						<td> <span class="geo_t">1.000&nbsp;in</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1220,15 +1143,15 @@ return true;};}</script>
 
 <p>
 	The <a href="/reference/lug-analysis#air-force-bearing-strength-axial">bearing efficiency factor</a> is determined from the figure below.  This coefficient is only valid for <span class="math-font">D/t &gt; 5</span>, which
-	<span class="KbearEff_msg1"></span>
+	<span class="KbearEff_msg1">does not apply</span>
 	in this case.  From the plot, the coefficient is:
 </p>
 
 <table class="tbl-border-none tbl-center tbl-vert-align-middle tbl-pad-vert-md tbl-pad-horiz-ss margin-bot-1p25">
 	<tbody><tr>
 		<td><span class="math-font">K<sub>bear</sub> =</span></td>
-		<td style="padding-right:50px;"> <span class="K_bearEff"></span> </td>
-		<td>(<span class="KbearEff_msg2"></span>)</td>
+		<td style="padding-right:50px;"> <span class="K_bearEff">0.75</span> </td>
+		<td>(<span class="KbearEff_msg2" style="color:crimson">does not apply since D/t &lt;= 5</span>)</td>
 	</tr>
 </tbody></table>
 
@@ -1250,12 +1173,12 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">D/t</span></td>
 						<td>=</td>
-						<td> <span class="D_over_t"></span> </td>
+						<td> <span class="D_over_t">1.63</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">e/D</span></td>
 						<td>=</td>
-						<td> <span class="e_over_D"></span> </td>
+						<td> <span class="e_over_D">0.92</span> </td>
 					</tr>
 					<tr>
 						<td style="padding-top:8px;"></td>
@@ -1263,17 +1186,17 @@ return true;};}</script>
 					<tr>
 						<td><span class="math-font">D</span></td>
 						<td>=</td>
-						<td> <span class="geo_D"></span> </td>
+						<td> <span class="geo_D">1.625&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">e</span></td>
 						<td>=</td>
-						<td> <span class="geo_e"></span> </td>
+						<td> <span class="geo_e">1.500&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">t</span></td>
 						<td>=</td>
-						<td> <span class="geo_t"></span> </td>
+						<td> <span class="geo_t">1.000&nbsp;in</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1288,13 +1211,13 @@ return true;};}</script>
 <br>
 
 
-<div class="div_K_isAxial" style="display:none;">
+<div class="div_K_isAxial" style="display: inherit;">
 	<p>Since <span class="math-font">D/t ≤ 5</span>, the axial load coefficient is used:</p>
 
 	<table class="tbl-border-none tbl-center tbl-vert-align-middle tbl-pad-vert-md tbl-pad-horiz-ss">
 		<tbody><tr>
 			<td><span class="math-font">K = K<sub>axial</sub> =</span></td>
-			<td> <span class="K_axial"></span> </td>
+			<td> <span class="K_axial">1.66</span> </td>
 		</tr>
 	</tbody></table>
 </div>
@@ -1305,7 +1228,7 @@ return true;};}</script>
 	<table class="tbl-border-none tbl-center tbl-vert-align-middle tbl-pad-vert-md tbl-pad-horiz-ss">
 		<tbody><tr>
 			<td><span class="math-font">K = K<sub>bear</sub> =</span></td>
-			<td> <span class="K_bearEff"></span> </td>
+			<td> <span class="K_bearEff">0.75</span> </td>
 		</tr>
 	</tbody></table>
 </div>
@@ -1325,7 +1248,7 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,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">
 					</figure>
 				</td>
-				<td> <span class="axial_P_bru_L"></span> </td>
+				<td> <span class="axial_P_bru_L">29,711&nbsp;lbf</span> </td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -1340,32 +1263,32 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">S<sub>ty</sub></span></td>
 						<td>=</td>
-						<td> <span class="mat_S_ty"></span> </td>
+						<td> <span class="mat_S_ty">20,000&nbsp;psi</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">S<sub>tu</sub></span></td>
 						<td>=</td>
-						<td> <span class="mat_S_tu"></span> </td>
+						<td> <span class="mat_S_tu">40,000&nbsp;psi</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">D</span></td>
 						<td>=</td>
-						<td> <span class="geo_D"></span> </td>
+						<td> <span class="geo_D">1.625&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">a</span></td>
 						<td>=</td>
-						<td> <span class="geo_a"></span> </td>
+						<td> <span class="geo_a">0.6875&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">e</span></td>
 						<td>=</td>
-						<td> <span class="geo_e"></span> </td>
+						<td> <span class="geo_e">1.500&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">t</span></td>
 						<td>=</td>
-						<td> <span class="geo_t"></span> </td>
+						<td> <span class="geo_t">1.000&nbsp;in</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1393,13 +1316,13 @@ return true;};}</script>
 				<td>
 					<span class="math-font">P<sub>b.B</sub> = 1.304 S<sub>cy.B</sub> D<sub>p</sub> t =</span>
 				</td>
-				<td> <span class="axial_P_u_B"></span> </td>
+				<td> <span class="axial_P_u_B">39,120&nbsp;lbf</span> </td>
 			</tr>
 		</tbody></table>
 
-		<div class="div_showIfNoBushing" style="display:none;">
+		<div class="div_showIfNoBushing" style="display: inherit;">
 			<p>
-				<i>NOTE:</i>&nbsp; There was no bushing specified for this lug, so the bushing bearing strength was calculated using the compressive yield strength of the lug body material, <span class="mat_name"></span>.
+				<i>NOTE:</i>&nbsp; There was no bushing specified for this lug, so the bushing bearing strength was calculated using the compressive yield strength of the lug body material, <span class="mat_name">Example Material 1, Fictitious</span>.
 			</p>
 		</div>
 
@@ -1411,23 +1334,23 @@ return true;};}</script>
 			<div class="card-content">
 				<p><i><u>Reference Values</u></i></p>
 
-				<p>Bushing: <span class="matBush_name"></span></p>
+				<p>Bushing: <span class="matBush_name">Example Material 1, Fictitious</span></p>
 
 				<table class="tbl-border-none tbl-pad-vert-none tbl-pad-horiz-ss">
 					<tbody><tr>
 						<td><span class="math-font">S<sub>cy.B</sub></span></td>
 						<td>=</td>
-						<td> <span class="mat_S_cy"></span> </td>
+						<td> <span class="mat_S_cy">20,000&nbsp;psi</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">D<sub>P</sub></span></td>
 						<td>=</td>
-						<td> <span class="geo_D_P"></span> </td>
+						<td> <span class="geo_D_P">1.500&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">t</span></td>
 						<td>=</td>
-						<td> <span class="geo_t"></span> </td>
+						<td> <span class="geo_t">1.000&nbsp;in</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1451,7 +1374,7 @@ return true;};}</script>
 <table class="tbl-border-none tbl-center tbl-vert-align-middle tbl-pad-vert-md tbl-pad-horiz-ss">
 	<tbody><tr>
 		<td><span class="math-font">K<sub>n</sub> =</span></td>
-		<td> <span class="K_netTension"></span> </td>
+		<td> <span class="K_netTension">0.76</span> </td>
 	</tr>
 </tbody></table>
 
@@ -1473,17 +1396,17 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">D/w</span></td>
 						<td>=</td>
-						<td> <span class="D_over_w"></span> </td>
+						<td> <span class="D_over_w">0.54</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">S<sub>ty</sub>&nbsp;/&nbsp;S<sub>tu</sub></span></td>
 						<td>=</td>
-						<td> <span class="Sty_over_Stu"></span> </td>
+						<td> <span class="Sty_over_Stu">0.50</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">S<sub>tu</sub>&nbsp;/&nbsp;(E⋅ε<sub>u</sub>)</span></td>
 						<td>=</td>
-						<td> <span class="Stu_over_Ee"></span> </td>
+						<td> <span class="Stu_over_Ee">0.032</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1507,7 +1430,7 @@ return true;};}</script>
 				<td>
 					<span class="math-font">P<sub>nu.L</sub> = K<sub>n</sub> ·&nbsp;</span><span class="math-font upright">min</span><span class="math-font">(S<sub>tu</sub> , 1.304 S<sub>ty</sub>) · (w − D) · t =</span>
 				</td>
-				<td> <span class="axial_P_nu_L"></span> </td>
+				<td> <span class="axial_P_nu_L">27,355&nbsp;lbf</span> </td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -1522,27 +1445,27 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">S<sub>ty</sub></span></td>
 						<td>=</td>
-						<td> <span class="mat_S_ty"></span> </td>
+						<td> <span class="mat_S_ty">20,000&nbsp;psi</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">S<sub>tu</sub></span></td>
 						<td>=</td>
-						<td> <span class="mat_S_tu"></span> </td>
+						<td> <span class="mat_S_tu">40,000&nbsp;psi</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">D</span></td>
 						<td>=</td>
-						<td> <span class="geo_D"></span> </td>
+						<td> <span class="geo_D">1.625&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">w</span></td>
 						<td>=</td>
-						<td> <span class="geo_w"></span> </td>
+						<td> <span class="geo_w">3.000&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">t</span></td>
 						<td>=</td>
-						<td> <span class="geo_t"></span> </td>
+						<td> <span class="geo_t">1.000&nbsp;in</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1567,7 +1490,7 @@ return true;};}</script>
 				<td>
 					<span class="math-font">P<sub>u.L.B</sub> = &nbsp;</span><span class="math-font upright">min</span><span class="math-font">( P<sub>bru.L</sub> , P<sub>u.B</sub> , P<sub>nu.L</sub> ) =</span>
 				</td>
-				<td> <span class="axial_P_u_LB"></span> </td>
+				<td> <span class="axial_P_u_LB">27,355&nbsp;lbf</span> </td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -1582,17 +1505,17 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">P<sub>bru.L</sub></span></td>
 						<td>=</td>
-						<td> <span class="axial_P_bru_L"></span> </td>
+						<td> <span class="axial_P_bru_L">29,711&nbsp;lbf</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">P<sub>u.B</sub></span></td>
 						<td>=</td>
-						<td> <span class="axial_P_u_B"></span> </td>
+						<td> <span class="axial_P_u_B">39,120&nbsp;lbf</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">P<sub>nu.L</sub></span></td>
 						<td>=</td>
-						<td> <span class="axial_P_nu_L"></span> </td>
+						<td> <span class="axial_P_nu_L">27,355&nbsp;lbf</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1620,12 +1543,12 @@ return true;};}</script>
 <table class="tbl-border-none tbl-center tbl-vert-align-middle tbl-pad-vert-ms tbl-pad-horiz-ss margin-bot-1p25">
 	<tbody><tr>
 		<td><span class="math-font">K<sub>try</sub> =</span></td>
-		<td> <span class="K_trans_yld"></span> </td>
+		<td> <span class="K_trans_yld">0.62</span> </td>
 		<td style="padding-left:50px;">transverse yield load coefficient</td>
 	</tr>
 	<tr>
 		<td><span class="math-font">K<sub>tru</sub> =</span></td>
-		<td> <span class="K_trans_ult"></span> </td>
+		<td> <span class="K_trans_ult">0.61</span> </td>
 		<td style="padding-left:50px;">transverse ultimate load coefficient</td>
 	</tr>
 </tbody></table>
@@ -1648,7 +1571,7 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">h<sub>eff</sub> / D</span></td>
 						<td>=</td>
-						<td> <span class="h_over_D"></span> </td>
+						<td> <span class="h_over_D">0.51</span> </td>
 					</tr>
 					<tr>
 						<td style="padding-top:8px;"></td>
@@ -1656,12 +1579,12 @@ return true;};}</script>
 					<tr>
 						<td><span class="math-font">h<sub>eff</sub></span></td>
 						<td>=</td>
-						<td> <span class="geo_h_eff"></span> </td>
+						<td> <span class="geo_h_eff">0.8297&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">D</span></td>
 						<td>=</td>
-						<td> <span class="geo_D"></span> </td>
+						<td> <span class="geo_D">1.625&nbsp;in</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1690,7 +1613,7 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,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">
 					</figure>
 				</td>
-				<td> <span class="trans_P_tru_L"></span> </td>
+				<td> <span class="trans_P_tru_L">26,193&nbsp;lbf</span> </td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -1705,22 +1628,22 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">S<sub>ty</sub></span></td>
 						<td>=</td>
-						<td> <span class="mat_S_ty"></span> </td>
+						<td> <span class="mat_S_ty">20,000&nbsp;psi</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">S<sub>tu</sub></span></td>
 						<td>=</td>
-						<td> <span class="mat_S_tu"></span> </td>
+						<td> <span class="mat_S_tu">40,000&nbsp;psi</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">D</span></td>
 						<td>=</td>
-						<td> <span class="geo_D"></span> </td>
+						<td> <span class="geo_D">1.625&nbsp;in</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">t</span></td>
 						<td>=</td>
-						<td> <span class="geo_t"></span> </td>
+						<td> <span class="geo_t">1.000&nbsp;in</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1743,7 +1666,7 @@ return true;};}</script>
 		<td>
 			<span class="math-font">P<sub>tru.B</sub> = P<sub>u.B</sub> =</span>
 		</td>
-		<td> <span class="trans_P_tru_B"></span> </td>
+		<td> <span class="trans_P_tru_B">39,120&nbsp;lbf</span> </td>
 	</tr>
 </tbody></table>
 
@@ -1765,7 +1688,7 @@ return true;};}</script>
 				<td>
 					<span class="math-font">P<sub>tru.L.B</sub> = &nbsp;</span><span class="math-font upright">min</span><span class="math-font">( P<sub>tru.L</sub> , P<sub>tru.B</sub> ) =</span>
 				</td>
-				<td> <span class="trans_P_tru_LB"></span> </td>
+				<td> <span class="trans_P_tru_LB">26,193&nbsp;lbf</span> </td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -1780,12 +1703,12 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">P<sub>tru.L</sub></span></td>
 						<td>=</td>
-						<td> <span class="trans_P_tru_L"></span> </td>
+						<td> <span class="trans_P_tru_L">26,193&nbsp;lbf</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">P<sub>tru.B</sub></span></td>
 						<td>=</td>
-						<td> <span class="trans_P_tru_B"></span> </td>
+						<td> <span class="trans_P_tru_B">39,120&nbsp;lbf</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -1814,25 +1737,25 @@ return true;};}</script>
 			<tbody><tr>
 				<td><span class="math-font">P<sub>ax</sub></span></td>
 				<td>=</td>
-				<td> <span class="force_axial"></span> </td>
+				<td> <span class="force_axial">224,809&nbsp;lbf</span> </td>
 				<td class="pad-left-2">axial force</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">P<sub>tr</sub></span></td>
 				<td>=</td>
-				<td> <span class="force_trans"></span> </td>
+				<td> <span class="force_trans">112,404&nbsp;lbf</span> </td>
 				<td class="pad-left-2">transverse force</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">P<sub>app</sub></span></td>
 				<td>=</td>
-				<td> <span class="force_cmb"></span> </td>
+				<td> <span class="force_cmb">251,344&nbsp;lbf</span> </td>
 				<td class="pad-left-2">total applied force</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">α</span></td>
 				<td>=</td>
-				<td> <span class="force_angle"></span> </td>
+				<td> <span class="force_angle">26.6 deg</span> </td>
 				<td class="pad-left-2">applied force angle</td>
 			</tr>
 		</tbody></table>
@@ -1852,13 +1775,13 @@ return true;};}</script>
 			<tbody><tr>
 				<td><span class="math-font">P<sub>u.L.B</sub></span></td>
 				<td>=</td>
-				<td> <span class="axial_P_u_LB"></span> </td>
+				<td> <span class="axial_P_u_LB">27,355&nbsp;lbf</span> </td>
 				<td class="pad-left-2">lug strength for pure axial loading</td>
 			</tr>
 			<tr>
 				<td><span class="math-font">P<sub>tru.L.B</sub></span></td>
 				<td>=</td>
-				<td> <span class="trans_P_tru_LB"></span> </td>
+				<td> <span class="trans_P_tru_LB">26,193&nbsp;lbf</span> </td>
 				<td class="pad-left-2">lug strength for pure transverse loading</td>
 			</tr>
 		</tbody></table>
@@ -1909,7 +1832,7 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAAAqCAYAAAByUvM5AAAJTElEQVR4Xu1cfYxcVRU/5840brNLpaFBDTTz3r0va6WCAgIFRYpJqaBFVGr8+AOICfhBwFZpLAKlJHyoiESqlQJaRBIt1g9otfWrVNTy0aqFrtp17rmvpVYrStW67drO3mPO+l4zO53deTvNbGa77yaTzO6cc+955/7efef+zrkPIW8NPaC1vhUAlowgGCPiUmvtyoadtbkAtrl9bWWe1poB4N9E9Mpqw7TWnwCALwLAYiK6q62MHqUxOSAyOiwIglcrpf7CzOudc2+vVUvA8gIRnZaxy7YUywGRcVqCIJillNrEzJ9xzt1RrRaG4WmIuBUAdhHR9IxdtqVYDoiM05I+Fpj5rc65p2oeGWmMsZSI5Pu4bTkgMk6d1vp7iHi2tfakapUgCM4pFArf9d73OucuzNhd24rlgMgwNVEUTfHe72Dm3yHik6LCzAVEfD0AvAUAHiWiBRm6anuRHBAZpigIgrlKqXUAsBAAtjNzp6ghYh8R/TBDF+NGJAdEhqlKeQil1HnlcnlTBpVxK5IDIsPUGWPWMfNcIjrm/XXMX2CG+R5RJOEfHABsIKJLGvVnjHmYmech4lPe+ylpoKm1XoKIhpn/DgBrJfZg5i7n3A2N+hzL33NANPC2MeZqZr4fABpuKY0xDzCzcBFLgyCYrZRaRUQnRlF0rvf+LiK6IIqi2d77j/f391/R0dHR570P4ziOx3LSRxorB8Qw3knu6DXMvDkVYeYnmXlpHMeDO42a7edg4FmpVMzOnTtJa30VAJxJRNdWy2mtFzMz1pJbbQmIBNU/AIAXAWCm8PYA8LJ8ELHkvX8BETeOd/KlFc43xtzAzBcR0RzpX2u9HBGf9t7vd849lo4ZhuGvEfF2IlobBMEFcRxvbIU9zfZZd4XQWn8TAD7kvb+w+m5IUP81AFhJRHIH5C3xgDHmMmY+nYiWRFF0CjP/BBHneO8XIuKzzHyd9/5ypdQfvPdT4zj+ZxiGK5xzV7eTE4cDxJ8A4GSl1PHlcvm/qcEzZ87sOnDgwD75eyJE3KOZqCAIjldKPQoAvxTeCgDOAYDLvPfnFgqFQ8z8HQDYhohrAODNzHyxUurSdtvGDgcIZuZ1zrmLq51ijDmPmX8FAM8Q0azROCyXHR8eOAIQYRiej4i/qJfbD8PwfkSUJa5hxD0+Lj+3stYD9QBxowQ93vtZcRw/IwpBEARKKUn5nsHMtzvnHsldeWx6oB4g1iHiXGbehIhdwtsjopZVoVgsLuvt7RVipWUtAd9DzHwIEQ8CgHwGv8v/5O/kN58aUSwW7+7t7f1zy4wahx1rrb8OAJKZlfjlkFLqsP8QUf436NfqS5ME3RBAdHd3T6tUKjv+HzPSqamw1no1ALwHAOYRkQRF46pFUfSKgYGBtormj9aBzrn7jraPevpDAKG1lklfLY8Ma+1NVYAQynYtIj5mrX1fKwxpZZ8JIL7fyjHGsm9EjInoo60YsxYQ9wDAAtkqxXH8dDpgQrp8DgDuHS7vXyqVwh07dgjnP6QJ2dXZ2bm5p6fnP/K9HstXq5NkFzNfb06UHemqEXwoW+K6u0vx45AfEhYtEv69eojkeXRlvd1FGIbXIqIsX8sBYI8MJh0nnMVOAPgSAHyQmX8DAM8h4nGNJlBo4+GMroeSRv1lRtYxJDjam0oufQggjDFnCm8vfH1tKVgtIJIkTg8i/pWZbyIiqRwSunabcP1C1QpnUSgUeiUITSqSpRr5NgDYmk9g+yIPk/zFhjomHuYaksj/R4i4R1K2ydmEt2mthaRaQ0R3poBKGcwwDOenHL7WWs4yTGlfN+SWpR4YVbYziiIzMDDQ6Zx7PlkR9nnvz4rj+I9Jmnih9/4aWe6LxeKL5XLZCsfvvb8+XXWyxhFjMUXJo2l+ksiTIYWQE8DLR2okVzDzrc65B8fCnnYYY1SAqBP8/bRYLL5fHgthGD6MiPuYeZqkgZlZ4oCVzBwi4j+I6JNaa6eUeke5XP59O1x8VdC8ipnnVyfzpLC2UqmcoZTawMyfcs59oZ1sbpUtRwWIMAwvQkQJGoW7kF2InG18SGIEAYhSSpJkEle8S4gQRBwgoo+16mKa7VdrvVdWtUmTJk3fvn37YPIubWEYbkDE2RMlmXdUgGh2AtpJr6qi+gkiurTOKrhLGD+l1Mx2W9la4ccJD4i0ohoRF1lrP1+z3X4nADwxXgm5ZgAz4QGRVlQDwFlEdLhcrlQqvaZQKEgt5flENLUZ545HnQkNiORElpQLCisr5y2ExRNSbgYAnA4AUi747mYmth4x1Ih/qdH5FwD0AkA/Ef2sGRua0ZnQgKiKH6Rk8NvMPFmcyMx/6+zs3NTT0yMZwaZa1eReDgB3eu93NaqfTDih2Yh4ivd+mZiilJrGzPcx8yXpdr8pgzIqTWhAVL0ZZgER3ZvRZ5nFtNaPA0CZiOQIYKYmOsz8SE1h7iBxOBaHiSc0INL4obaYONPMNRBKSwmY+QPOOQFGw1ZVfiDFuvK4gDAM5yDij5n5DfkK0dCFzQskRbHCP7xUm8yr2Wl0ywFfKQkAgJ3W2hWytCPikpHu2KSUYHlfX5/es2dPXxZLE51FiLg4eXS9FgCkeu29WbLEWcZoJDNhV4iqHM6Xaw/T1ABCAs15zHyjvEcqSdzJ9rTfWnvzcA7WWss7p6YTkcQQmZroIOIJzCzM6WREPAAAt3jvF+WAyOTC0Qsl+Ysj3vKCiNfI3V+vR2PMicy8u7+/f8ru3bv3a63XK6XuKZfL60cAxGZEXGWtFQZ3sGmtP0JEX22g84C1Vra7g80YczczC1P6ptFf7eg1JuwKMRpXyVKOiNdZa2d3d3efVKlUdnV1dXXt37+/VI+9LJVKrysUCpKvOZuInkvHkqp155wk/45oqQ4inmqt3VYFomcR8WVr7REvOhvNNWSVzQGRwVPGmCslSSenspITWlJZ9g3ZFhLRbVrrjYj4FWvtt6S7MAw/jIgP9vX1daXxgzHmZu/9NOfc9TNmzDjh4MGD8oqiO6y18iKSwzrVORNjzBXe+1sKhcK8saLNc0BkAESy3P8WAN4IAPK4KQHAVZMnTz5u7969vqOjYyszf1bS5FrrnyfkllQ0S9A6WB0uryACACkDeD6KopO997KV/DQRrdZaC/H0qkTupdQkRFw2derUx7ds2TKkOjqjyU2J/Q9KcnxnjCGo7QAAAABJRU5ErkJggg==">
 					</figure>
 				</td>
-				<td> <span class="R_axial"></span> </td>
+				<td> <span class="R_axial">8.218</span> </td>
 				<td class="pad-left-2">axial load ratio</td>
 			</tr>
 			<tr>
@@ -1919,7 +1842,7 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,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">
 					</figure>
 				</td>
-				<td> <span class="R_trans"></span> </td>
+				<td> <span class="R_trans">4.291</span> </td>
 				<td class="pad-left-2">transverse load ratio</td>
 			</tr>
 		</tbody></table>
@@ -1936,7 +1859,7 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,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">
 					</figure>
 				</td>
-				<td> <span class="R_axial_ult"></span> </td>
+				<td> <span class="R_axial_ult">0.828</span> </td>
 				<td class="pad-left-2">ultimate axial load ratio</td>
 			</tr>
 			<tr>
@@ -1946,7 +1869,7 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,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">
 					</figure>
 				</td>
-				<td> <span class="R_trans_ult"></span> </td>
+				<td> <span class="R_trans_ult">0.432</span> </td>
 				<td class="pad-left-2">ultimate transverse load ratio</td>
 			</tr>
 		</tbody></table>
@@ -1970,14 +1893,14 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,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">
 					</figure>
 				</td>
-				<td> <span class="oblique_P_axial_ult"></span> </td>
+				<td> <span class="oblique_P_axial_ult">22,639&nbsp;lbf</span> </td>
 				<td class="pad-left-2">axial strength component</td>
 			</tr>
 			<tr>
 				<td>
 					<span class="math-font">P<sub>tr.ult</sub> = P<sub>ax.ult</sub> ·&nbsp;</span><span class="math-font upright">tan(</span><span class="math-font">α</span><span class="math-font upright">)</span> =
 				</td>
-				<td> <span class="oblique_P_trans_ult"></span> </td>
+				<td> <span class="oblique_P_trans_ult">11,319&nbsp;lbf</span> </td>
 				<td class="pad-left-2">transverse strength component</td>
 			</tr>
 		</tbody></table>
@@ -1993,17 +1916,17 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">P<sub>u.L.B</sub></span></td>
 						<td>=</td>
-						<td> <span class="axial_P_u_LB"></span> </td>
+						<td> <span class="axial_P_u_LB">27,355&nbsp;lbf</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">P<sub>tru.L.B</sub></span></td>
 						<td>=</td>
-						<td> <span class="trans_P_tru_LB"></span> </td>
+						<td> <span class="trans_P_tru_LB">26,193&nbsp;lbf</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">α</span></td>
 						<td>=</td>
-						<td> <span class="force_angle"></span> </td>
+						<td> <span class="force_angle">26.6 deg</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -2028,7 +1951,7 @@ return true;};}</script>
 						<img style="max-width:100%;" src="data:image/png;base64,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">
 					</figure>
 				</td>
-				<td> <span class="oblique_P_ult"></span> </td>
+				<td> <span class="oblique_P_ult">25,311&nbsp;lbf</span> </td>
 			</tr>
 		</tbody></table>
 	</div>
@@ -2043,12 +1966,12 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">P<sub>ax.ult</sub></span></td>
 						<td>=</td>
-						<td> <span class="oblique_P_axial_ult"></span> </td>
+						<td> <span class="oblique_P_axial_ult">22,639&nbsp;lbf</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">P<sub>tr.ult</sub></span></td>
 						<td>=</td>
-						<td> <span class="oblique_P_trans_ult"></span> </td>
+						<td> <span class="oblique_P_trans_ult">11,319&nbsp;lbf</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -2075,8 +1998,8 @@ return true;};}</script>
 				<td>
 					<table class="margin-bot-0">
 						<tbody><tr>
-							<td class="FS_cell" style="font-size:larger; padding:0px 7px 0px 7px;">
-								<span class="FS_span"></span>
+							<td class="FS_cell" style="font-size: larger; padding: 0px 7px; background-color: salmon;">
+								<span class="FS_span">0.10</span>
 							</td>
 						</tr>
 					</tbody></table>
@@ -2095,12 +2018,12 @@ return true;};}</script>
 					<tbody><tr>
 						<td><span class="math-font">P<sub>ult</sub></span></td>
 						<td>=</td>
-						<td> <span class="oblique_P_ult"></span> </td>
+						<td> <span class="oblique_P_ult">25,311&nbsp;lbf</span> </td>
 					</tr>
 					<tr>
 						<td><span class="math-font">P<sub>app</sub></span></td>
 						<td>=</td>
-						<td> <span class="force_cmb"></span> </td>
+						<td> <span class="force_cmb">251,344&nbsp;lbf</span> </td>
 					</tr>
 				</tbody></table>
 			</div>
@@ -3148,7 +3071,7 @@ return true;};}</script>
 
 							</div>
 
-							<div id="divFemaleLug_NoResults" style="display:none;">
+							<div id="divFemaleLug_NoResults" style="display: inherit;">
 								<br>
 								<p style="color:crimson; font-style:italic;">
 									There is no female lug in this joint, so these results cannot be calculated.
@@ -3712,7 +3635,7 @@ return true;};}</script>
 
 							</div>
 
-							<div id="divDblShearRes_NoResults" style="display:none;">
+							<div id="divDblShearRes_NoResults" style="display: inherit;">
 								<br>
 								<p style="color:crimson; font-style:italic;">
 									There is no female lug in this joint, so these results cannot be calculated.
@@ -3769,434 +3692,67 @@ return true;};}</script>
 			<!-- Pricing -->
 
 
-<div class="row">
-	<div class="col-sm-12">
-		<h2>Need More Functionality?</h2>
-
-		<p>
-			Sign up for an account to receive <b>full access to all calculators</b> and other content.  The subscription types are described below, along with the benefits of each.
-		</p>
-
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-12">
 
 
-<div class="priceContainer">
-
-	<div class="priceColumn descColumn">
-
-		<ul class="header">
-			<li>
-				<div class="headDiv">
-					&nbsp;
-				</div>
-			</li>
-		</ul>
-
-		<ul class="priceList descList">
-			<li class="priceRow" style="padding-top:14px;">
-				Price
-			</li>
-			<li>Access to Calculators</li>
-			<li>Login</li>
-			<li>Create Materials</li>
-			<li>Create Cross Sections</li>
-			<li>Save Files</li>
-			<li>Reporting</li>
-		</ul>
-
-	</div>
-
-	<!-- Free version -->
-	<div class="priceColumn">
-
-		<ul class="header headerTier headerTier1">
-			<li>
-				<a href="/free-use">
-					<div class="headDiv">
-						Free
-					</div>
-				</a>
-			</li>
-		</ul>
-
-		<ul class="priceList tierList">
-
-			<li class="priceRow" style="padding-top:14px;">
-				Free
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="The calculators on this site can be used for free on a limited basis, but to obtain full use of the calculators you must sign up for an account.">
-					<div class="textWide">
-						Limited
-					</div>
-					<div class="textNarrow">
-						<b>Limited</b> Access to Calculators
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="The free versions of the calculators do not require a login.">
-					<div class="textWide">
-						None
-					</div>
-					<div class="textNarrow">
-						<b>No</b> Login
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="The free version only gives access to a handful of pre-defined materials.  To create new materials and to access our materials database, you must sign up for a paid subscription.">
-					<div class="textWide">
-						<span class="xMark fa fa-times" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Pre-defined</b> Materials
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="The free version only gives access to a handful of pre-defined cross sections.  To create new cross sections and to access our cross sections database, you must sign up for a paid subscription.">
-					<div class="textWide">
-						<span class="xMark fa fa-times" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Pre-defined</b> Cross Sections
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Without a paid subscription, you will not be able to save your work.">
-					<div class="textWide">
-						<span class="xMark fa fa-times" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>No</b> Saved Files
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Without a paid subscription, you will not be able to download reports of your results.">
-					<div class="textWide">
-						<span class="xMark fa fa-times" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>No</b> Reporting
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="/free-use">Learn More »</a>
-			</li>
-		</ul>
-
-	</div>
-
-	<!-- Individual -->
-	<div class="priceColumn">
-
-		<ul class="header headerTier headerTier2">
-			<li>
-				<a href="/auth/register-individual">
-					<div class="headDiv">
-						Individual
-					</div>
-				</a>
-			</li>
-		</ul>
-
-		<ul class="priceList tierList">
-
-			<li class="priceCell priceRow">
-				<div tooltip-position="bottom" tooltip="Pay yearly, monthly, or for a single semester.  Cancel anytime.">
-					<table class="tbl-center">
-						<tbody><tr>
-							<td class="text-left text-nowrap">
-								USD $9.99 /month
-							</td>
-						</tr>
-						<tr>
-							<td class="text-left text-nowrap">
-								USD $59.99 /year
-							</td>
-						</tr>
-					</tbody></table>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Receive unrestricted access to all calculators and other content on this site.">
-					<div class="textWide">
-						Full
-					</div>
-					<div class="textNarrow">
-						<b>Full</b> Access to Calculators
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Receive individual login credentials that you can use to log in on any device.">
-					<div class="textWide">
-						Individual
-					</div>
-					<div class="textNarrow">
-						<b>Individual</b> Login
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Create new materials for use in the calculators. Receive full access to the materials database.  Download your personal materials database to a file.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Create</b> Materials
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Create new cross sections for use in the calculators. Receive full access to the cross sections database.  Download your personal cross sections database to a file.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Create</b> Cross Sections
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Save input files so that you never lose your work.  Upload the input files to pick up where you left off.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Unlimited</b> Saved Files
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Generate beautifully formatted reports to document results.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Unlimited</b> Reporting
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="/individual-subscription">Learn More »</a>
-			</li>
-			<li class="buyBtnCell btnTier2">
-				<a href="/auth/register-individual" class="btn btn-primary">Sign Up Now</a>
-			</li>
-		</ul>
-
-	</div>
-
-	<!-- Corporate -->
-	<div class="priceColumn">
-
-		<ul class="header headerTier headerTier3">
-			<li>
-				<a href="/auth/register-group">
-					<div class="headDiv">
-						Group
-					</div>
-				</a>
-			</li>
-		</ul>
-
-		<ul class="priceList tierList">
-
-			<li class="priceCell priceRow">
-				<div tooltip-position="bottom" tooltip="Pay either yearly or monthly.  Cancel anytime.">
-					<table class="tbl-center">
-						<tbody><tr>
-							<td class="text-left text-nowrap">
-								USD $39.99 /month
-							</td>
-						</tr>
-						<tr>
-							<td class="text-left text-nowrap">
-								USD $249.99 /year
-							</td>
-						</tr>
-					</tbody></table>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Receive unrestricted access to all calculators and other content on this site.">
-					<div class="textWide">
-						Full
-					</div>
-					<div class="textNarrow">
-						<b>Full</b> Access to Calculators
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Manage a pool of floating licenses that can be shared between multiple users. Ideal for commercial use.">
-
-					<div class="textWide">
-						Floating Licenses &nbsp;<span class="fa fa-retweet" style="font-size:1.1rem; color:seagreen;" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Floating Licenses</b> &nbsp;<span class="fa fa-retweet" style="font-size:1.1rem; color:seagreen;" aria-hidden="true"></span>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Create new materials for use in the calculators. Receive full access to the materials database.  Download your personal materials database to a file.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Create</b> Materials
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Create new cross sections for use in the calculators. Receive full access to the cross sections database.  Download your personal cross sections database to a file.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Create</b> Cross Sections
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Save input files so that you never lose your work.  Upload the input files to pick up where you left off.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Unlimited</b> Saved Files
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Generate beautifully formatted reports to document results.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Unlimited</b> Reporting
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="/group-subscription">Learn More »</a>
-			</li>
-			<li class="buyBtnCell btnTier3">
-				<a href="/auth/register-group" class="btn btn-primary">Sign Up Now</a>
-			</li>
-		</ul>
-
-	</div>
-
-	<!-- Classroom -->
-	<div class="priceColumn">
-
-		<ul class="header headerTier headerTier4">
-			<li>
-				<a href="/auth/register-classroom">
-					<div class="headDiv">
-						Classroom
-					</div>
-				</a>
-			</li>
-		</ul>
-
-		<ul class="priceList tierList">
-
-			<li class="priceRow">
-				<div tooltip-position="bottom" tooltip="Pay yearly, monthly, or for a single semester.  Cancel anytime.">
-					Bulk pricing (≥20 educational licenses)
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Receive unrestricted access to all calculators and other content on this site.">
-					<div class="textWide">
-						Full
-					</div>
-					<div class="textNarrow">
-						<b>Full</b> Access to Calculators
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Manage a pool of floating licenses shared between your students.">
-
-					<div class="textWide">
-						Floating Licenses &nbsp;<span class="fa fa-retweet" style="font-size:1.1rem; color:seagreen;" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Floating Licenses</b> &nbsp;<span class="fa fa-retweet" style="font-size:1.1rem; color:seagreen;" aria-hidden="true"></span>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Create new materials for use in the calculators. Receive full access to the materials database.  Download your personal materials database to a file.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Create</b> Materials
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Create new cross sections for use in the calculators. Receive full access to the cross sections database.  Download your personal cross sections database to a file.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Create</b> Cross Sections
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Save input files so that you never lose your work.  Upload the input files to pick up where you left off.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Unlimited</b> Saved Files
-					</div>
-				</div>
-			</li>
-			<li>
-				<div tooltip-position="bottom" tooltip="Generate beautifully formatted reports to document results.">
-					<div class="textWide">
-						<span class="checkMark fa fa-check" aria-hidden="true"></span>
-					</div>
-					<div class="textNarrow">
-						<b>Unlimited</b> Reporting
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="/classroom-subscription">Learn More »</a>
-			</li>
-			<li class="buyBtnCell btnTier4">
-				<a href="/auth/register-classroom" class="btn btn-primary">Sign Up Now</a>
-			</li>
-		</ul>
-
-	</div>
-
-</div>
 
 <div class="priceAfter"></div>
 
 
+			<!-- ======================================================================================================== -->
+			<!-- Variables for local storage: -->
+			<div style="display: none;">
+				<span id="resultVar">lugResults</span>
+			</div>
+
+
+		</div>
+
+
+
+		<!-- Results (hide the div, only show when we have results) -->
+		<div id="divResults" style="display: none;">
+
+			<h2>Display Units</h2>
+
+			<div class="row-table form-group">
+				<div class="col-table">
+					<p class="form-plaintext">
+						Display results in:
+					</p>
+				</div>
+				<div class="col-table col-table-resp" id="unitRdo-custom">
+					<label class="radio form-full-pad">
+						<span tooltip-position="bottom" tooltip="Custom units (edit within your Preferences page)">
+							<input type="radio" name="unitRadio" id="unitRadioCustom" value="1">Custom (<a href="/auth/preferences">Edit</a>)
+						</span>
+					</label>
+				</div>
+				<div class="col-table col-table-resp" id="unitRdo-english">
+					<label class="radio form-full-pad">
+						<span tooltip-position="bottom" tooltip="US Customary units">
+							<input type="radio" name="unitRadio" id="unitRadioEnglish" value="2">US
+						</span>
+					</label>
+				</div>
+				<div class="col-table col-table-resp" id="unitRdo-SI">
+					<label class="radio form-full-pad">
+						<span tooltip-position="bottom" tooltip="Metric (SI) units">
+							<input type="radio" name="unitRadio" id="unitRadioSI" value="3">SI
+						</span>
+					</label>
+				</div>
+			</div>
+
+
+
+            </div>
 
 	</div>
+
+
 </div>
+
+
 
 
 
